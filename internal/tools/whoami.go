@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/lajosbencz/whoamimcp/internal/keys"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/traefik/whoamimcp/internal/keys"
 )
 
 type WhoamiInfo struct {

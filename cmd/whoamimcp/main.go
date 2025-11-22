@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/traefik/whoamimcp/internal"
+	"github.com/lajosbencz/whoamimcp/internal"
 )
 
 var (

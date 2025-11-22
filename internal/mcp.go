@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/lajosbencz/whoamimcp/internal/keys"
+	"github.com/lajosbencz/whoamimcp/internal/prompts"
+	"github.com/lajosbencz/whoamimcp/internal/tools"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/traefik/whoamimcp/internal/keys"
-	"github.com/traefik/whoamimcp/internal/prompts"
-	"github.com/traefik/whoamimcp/internal/tools"
 )
 
 func NewMcpHandler(name string, options *mcp.StreamableHTTPOptions) *mcp.StreamableHTTPHandler {

@@ -36,21 +36,21 @@ archives:
       - LICENSE
 
 docker_manifests:
-  - name_template: 'traefik/whoamimcp:{{ .Tag }}'
+  - name_template: 'lajosbencz/whoamimcp:{{ .Tag }}'
     image_templates:
-      - 'traefik/whoamimcp:{{ .Tag }}-amd64'
-      - 'traefik/whoamimcp:{{ .Tag }}-arm64'
-      - 'traefik/whoamimcp:{{ .Tag }}-armv7'
-  - name_template: 'traefik/whoamimcp:latest'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: 'lajosbencz/whoamimcp:latest'
     image_templates:
-      - 'traefik/whoamimcp:{{ .Tag }}-amd64'
-      - 'traefik/whoamimcp:{{ .Tag }}-arm64'
-      - 'traefik/whoamimcp:{{ .Tag }}-armv7'
-  - name_template: 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}'
     image_templates:
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
 
 dockers:
   - use: buildx
@@ -58,9 +58,9 @@ dockers:
     goarch: amd64
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'traefik/whoamimcp:latest-amd64'
-      - 'traefik/whoamimcp:{{ .Tag }}-amd64'
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - 'lajosbencz/whoamimcp:latest-amd64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -79,9 +79,9 @@ dockers:
     goarch: arm64
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'traefik/whoamimcp:latest-arm64'
-      - 'traefik/whoamimcp:{{ .Tag }}-arm64'
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - 'lajosbencz/whoamimcp:latest-arm64'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -101,9 +101,9 @@ dockers:
     goarm: '7'
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'traefik/whoamimcp:latest-armv7'
-      - 'traefik/whoamimcp:{{ .Tag }}-armv7'
-      - 'traefik/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+      - 'lajosbencz/whoamimcp:latest-armv7'
+      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
+      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys

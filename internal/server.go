@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/lajosbencz/whoamimcp/internal/tools"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/rs/cors"
-	"github.com/traefik/whoamimcp/internal/tools"
 )
 
 func StartServer(ctx context.Context, name string, addr string) error {

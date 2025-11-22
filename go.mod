@@ -1,4 +1,4 @@
-module github.com/traefik/whoamimcp
+module github.com/lajosbencz/whoamimcp
 
 go 1.24.6
 

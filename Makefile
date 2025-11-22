@@ -1,4 +1,4 @@
-IMAGE_NAME ?= traefik/whoamimcp
+IMAGE_NAME ?= whoamimcp
 INSPECTOR_PORT ?= 6274
 INSPECTOR_PROXY_PORT ?= 6277
 

@@ -36,7 +36,7 @@ Takes precedence over environment variables
 
 ```bash
 # default
-docker run --rm -it -n whoamimcp traefik/whoamimcp:latest
+docker run --rm -it -n whoamimcp lajosbencz/whoamimcp:latest
 ```
 
 ```bash
@@ -46,5 +46,5 @@ docker run --rm -it \
     -e "TRAEFIK_NAME=whoamimcp" \
     -e "TRAEIFK_HOST=0.0.0.0" \
     -e "TRAEFIK_PORT_NUMBER=80" \
-    traefik/whoamimcp:latest
+    lajosbencz/whoamimcp:latest
 ```
