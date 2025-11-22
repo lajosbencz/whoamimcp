@@ -1,5 +1,8 @@
 project_name: whoamimcp
 
+env:
+  - DOCKER_USERNAME=lajosbencz
+
 builds:
   - binary: whoamimcp
     main: ./cmd/whoamimcp
@@ -36,21 +39,38 @@ archives:
       - LICENSE
 
 docker_manifests:
-  - name_template: 'lajosbencz/whoamimcp:{{ .Tag }}'
+  - name_template: '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}'
     image_templates:
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
-  - name_template: 'lajosbencz/whoamimcp:latest'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: '{{ .Env.DOCKER_USERNAME }}/whoamimcp:latest'
     image_templates:
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
-  - name_template: 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}'
     image_templates:
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+  
+  # GHCR manifests
+  - name_template: 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}'
+    image_templates:
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:latest'
+    image_templates:
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-armv7'
+  - name_template: 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}'
+    image_templates:
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
 
 dockers:
   - use: buildx
@@ -58,9 +78,12 @@ dockers:
     goarch: amd64
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'lajosbencz/whoamimcp:latest-amd64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-amd64'
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:latest-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-amd64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:latest-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-amd64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-amd64'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -79,9 +102,12 @@ dockers:
     goarch: arm64
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'lajosbencz/whoamimcp:latest-arm64'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-arm64'
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:latest-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-arm64'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:latest-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-arm64'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-arm64'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -101,9 +127,12 @@ dockers:
     goarm: '7'
     dockerfile: buildx.Dockerfile
     image_templates:
-      - 'lajosbencz/whoamimcp:latest-armv7'
-      - 'lajosbencz/whoamimcp:{{ .Tag }}-armv7'
-      - 'lajosbencz/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:latest-armv7'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:{{ .Tag }}-armv7'
+      - '{{ .Env.DOCKER_USERNAME }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:latest-armv7'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:{{ .Tag }}-armv7'
+      - 'ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/whoamimcp:v{{ .Major }}.{{ .Minor }}-armv7'
     build_flag_templates:
       - '--pull'
       # https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
