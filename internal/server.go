@@ -40,7 +40,7 @@ func StartServer(ctx context.Context, name string, addr string) error {
 			"Content-Length",
 		},
 		AllowCredentials: true,
-		MaxAge:           int(time.Minute * 5),
+		MaxAge:           -1,
 	})
 
 	srv := &http.Server{
