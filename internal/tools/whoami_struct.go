@@ -13,7 +13,7 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-type WhoamiInfo struct {
+type WhoamiStructInfo struct {
 	Hostname   string      `json:"hostname,omitempty"`
 	Name       string      `json:"name,omitempty"`
 	Headers    http.Header `json:"headers,omitempty"`
@@ -28,7 +28,7 @@ type WhoamiInfo struct {
 	TLS        bool        `json:"tls,omitempty"`
 }
 
-func (i *WhoamiInfo) WriteTo(w io.Writer) (int64, error) {
+func (i *WhoamiStructInfo) WriteTo(w io.Writer) (int64, error) {
 	var total int
 	var err error
 	write := func(format string, args ...interface{}) {
@@ -59,16 +59,16 @@ func (i *WhoamiInfo) WriteTo(w io.Writer) (int64, error) {
 	return int64(total), err
 }
 
-func (i *WhoamiInfo) String() string {
+func (i *WhoamiStructInfo) String() string {
 	var output strings.Builder
 	i.WriteTo(&output)
 	return output.String()
 }
 
-func GetWhoamiInfo(req *http.Request, name string) WhoamiInfo {
+func GetWhoamiStructInfo(req *http.Request, name string) WhoamiStructInfo {
 	hostname, _ := os.Hostname()
 	port, _ := strconv.ParseUint(req.URL.Port(), 10, 32)
-	return WhoamiInfo{
+	return WhoamiStructInfo{
 		Hostname:   hostname,
 		Name:       name,
 		URL:        req.URL.RequestURI(),
@@ -84,22 +84,22 @@ func GetWhoamiInfo(req *http.Request, name string) WhoamiInfo {
 	}
 }
 
-type WhoamiArgs struct {
+type WhoamiStructArgs struct {
 }
 
-func Whoami(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[WhoamiArgs]) (*mcp.CallToolResultFor[WhoamiInfo], error) {
+func WhoamiStruct(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[WhoamiStructArgs]) (*mcp.CallToolResultFor[WhoamiStructInfo], error) {
 
 	name, ok := ctx.Value(keys.Name).(string)
 	if !ok {
-		return &mcp.CallToolResultFor[WhoamiInfo]{}, fmt.Errorf("Internal error: failed to get name")
+		return &mcp.CallToolResultFor[WhoamiStructInfo]{}, fmt.Errorf("Internal error: failed to get name")
 	}
 	req, ok := ctx.Value(keys.HttpRequest).(*http.Request)
 	if !ok {
-		return &mcp.CallToolResultFor[WhoamiInfo]{}, fmt.Errorf("Internal error: failed to get request")
+		return &mcp.CallToolResultFor[WhoamiStructInfo]{}, fmt.Errorf("Internal error: failed to get request")
 	}
 
-	info := GetWhoamiInfo(req, name)
-	return &mcp.CallToolResultFor[WhoamiInfo]{
+	info := GetWhoamiStructInfo(req, name)
+	return &mcp.CallToolResultFor[WhoamiStructInfo]{
 		Content:           []mcp.Content{},
 		StructuredContent: info,
 	}, nil

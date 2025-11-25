@@ -15,7 +15,7 @@ func StartServer(ctx context.Context, name string, addr string) error {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		info := tools.GetWhoamiInfo(r, name)
+		info := tools.GetWhoamiStructInfo(r, name)
 		w.WriteHeader(http.StatusOK)
 		info.WriteTo(w)
 	})

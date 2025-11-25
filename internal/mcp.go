@@ -27,7 +27,8 @@ func NewMcpHandler(name string, options *mcp.StreamableHTTPOptions) *mcp.Streama
 		}, &options)
 
 		mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "Say hi with hostname and server info"}, tools.SayHi)
-		mcp.AddTool(server, &mcp.Tool{Name: "whoami", Description: "Get detailed system and request information"}, tools.Whoami)
+		mcp.AddTool(server, &mcp.Tool{Name: "whoami_text", Description: "Get text format system and request information"}, tools.WhoamiText)
+		mcp.AddTool(server, &mcp.Tool{Name: "whoami_struct", Description: "Get structured system and request information"}, tools.WhoamiStruct)
 		mcp.AddTool(server, &mcp.Tool{Name: "raise_error", Description: "Simulates an error on the MCP server"}, tools.RaiseError)
 		server.AddPrompt(&mcp.Prompt{Name: "greet", Description: "Greeting prompt"}, prompts.PromptHi)
 
